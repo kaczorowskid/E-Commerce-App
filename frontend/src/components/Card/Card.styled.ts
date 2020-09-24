@@ -2,25 +2,58 @@ import styled from 'styled-components';
 import { CartAdd } from '@styled-icons/boxicons-solid';
 import { Heart } from '@styled-icons/boxicons-regular'
 
-export const Container = styled.div`
-    width: 200px;
-    height: 350px;
-    /* background-color: #F8F9FB; */
-    margin: 50px 5px 50px 5px;
-    /* border: 1px solid #b3b3b3; */
+export const SizeContainer = styled.div`
+    position: relative;
+    width: 100%;
+    height: 80px;
+    top: -80px;
+    background-color: #00000085;
+    opacity: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.5s ease;
 `;
 
-export const ImageContainer = styled.img`
-    width: 200px;
-    height: 270px;
+export const SizeItem = styled.span`
+    margin: 0 10px 0 10px;
+    font-weight: bold;
+    color: white;
+    font-size: 18px;
 `;
+
+export const Container = styled.div`
+    width: 320px;
+    height: 550px;
+    margin: 50px 5px 50px 5px;
+    border: 1px solid white;
+
+    &:hover {
+        ${SizeContainer} {
+            opacity: 1;
+            transition: all 0.5s ease;
+        }
+    }
+`;
+
+export const Image = styled.img`
+
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    overflow: hidden;
+`;
+
+export const ImageContainer = styled.div`
+    width: 340px;
+    height: 450px;
+`;
+
 
 export const InfoContainer = styled.div`
     display: flex;
     align-items: center;
-    justify-content: space-around;
-    height: 80px;
-    width: 200px;
+    justify-content: center;
 `;
 
 export const Info = styled.div`
@@ -41,14 +74,4 @@ export const InfoPrice = styled.span`
 export const InfoPricePromotion = styled.span`
     color: red;
     text-decoration: line-through;
-`;
-
-export const CartAddIcon = styled(CartAdd)`
-    width: 30xp;
-    height: 30px;
-`;
-
-export const HeartIcon = styled(Heart)`
-    width: 30xp;
-    height: 30px;
 `;

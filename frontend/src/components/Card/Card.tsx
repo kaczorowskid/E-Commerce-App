@@ -9,7 +9,17 @@ const Card: React.FC<Props> = ({ imgSource }) => {
     return (
         <div>
             <CardStyled.Container>
-                <CardStyled.ImageContainer src={imgSource} />
+                <CardStyled.ImageContainer>
+                    <CardStyled.Image src={imgSource}/>
+                    <CardStyled.SizeContainer>
+                        <CardStyled.SizeItem>XS</CardStyled.SizeItem>
+                        <CardStyled.SizeItem>S</CardStyled.SizeItem>
+                        <CardStyled.SizeItem>M</CardStyled.SizeItem>
+                        <CardStyled.SizeItem>L</CardStyled.SizeItem>
+                        <CardStyled.SizeItem>XL</CardStyled.SizeItem>
+                        <CardStyled.SizeItem>XXL</CardStyled.SizeItem>
+                    </CardStyled.SizeContainer>
+                </CardStyled.ImageContainer>
                 <CardStyled.InfoContainer>
                     <CardStyled.Info>
                         <CardStyled.InfoTitle>

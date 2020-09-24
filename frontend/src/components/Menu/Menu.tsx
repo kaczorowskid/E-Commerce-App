@@ -1,10 +1,14 @@
 import React from 'react';
 import * as MenuStyled from './Menu.styled';
 
-const Menu: React.FC = () => {
+interface Props {
+    visible: boolean
+}
+
+const Menu: React.FC<Props> = ({visible}) => {
     return (
         <div>
-            <MenuStyled.Container>
+            <MenuStyled.Container visible = {visible}>
                 <MenuStyled.MenuSexContainer>
                     <MenuStyled.FolderOpenIcon />
                     <MenuStyled.MenuSex>Kobieta</MenuStyled.MenuSex>
