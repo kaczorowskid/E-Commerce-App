@@ -24,9 +24,9 @@ export const SizeItem = styled.span`
 
 export const Container = styled.div`
     width: 320px;
-    height: 550px;
+    height: 100%;
     margin: 50px 5px 50px 5px;
-    border: 1px solid white;
+    /* border: 1px solid white; */
 
     &:hover {
         ${SizeContainer} {
@@ -45,7 +45,7 @@ export const Image = styled.img`
 `;
 
 export const ImageContainer = styled.div`
-    width: 340px;
+    width: 100%;
     height: 450px;
 `;
 

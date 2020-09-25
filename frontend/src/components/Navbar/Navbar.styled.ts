@@ -116,16 +116,34 @@ export const RightContainer = styled.div`
     }
 `;
 
+export const ShopingCardContainer = styled.div`
+
+`;
+
+export const ShopingCardNum = styled.span`
+    position: relative;
+    background-color: orange;
+    top: -15px;
+    left: -30px;
+    color: white;
+    width: 30px;
+    height: 30px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+`;
+
 export const ShoppingCart = styled(ShoppingCartOutline)`
     width: 35px;
     height: 35px;
-    margin: 0 25px 0 25px;
+    margin: 0 20px 0 20px;
     color: white;
 `;
 
 export const UserCart = styled(User)`
     width: 35px;
     height: 35px;
-    margin: 0 25px 0 25px;
+    margin: 0 25px 0 20px;
     color: white;
 `;

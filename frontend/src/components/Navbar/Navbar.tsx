@@ -15,16 +15,16 @@ const connector = connect(null, mapDispatchToProps)
 
 type Props = ConnectedProps<typeof connector>;
 
-const Navbar: React.FC<Props> = ({toggleMenu}) => {
+const Navbar: React.FC<Props> = ({ toggleMenu }) => {
     return (
         <div>
             <NavbarStyled.Container>
                 <NavbarStyled.LeftContainer>
-                    <NavbarStyled.HamburgerButton onClick = {() => toggleMenu()}>
+                    <NavbarStyled.HamburgerButton onClick={() => toggleMenu()}>
                         <NavbarStyled.HamburgerMenu />
                     </NavbarStyled.HamburgerButton>
                     <NavbarStyled.InputContainer>
-                        <NavbarStyled.InputSearch placeholder = "Szukaj" />
+                        <NavbarStyled.InputSearch placeholder="Szukaj" />
                         <NavbarStyled.MenuIconStyled />
                     </NavbarStyled.InputContainer>
                 </NavbarStyled.LeftContainer>
@@ -32,7 +32,10 @@ const Navbar: React.FC<Props> = ({toggleMenu}) => {
                     <h2>RUBShop</h2>
                 </NavbarStyled.CenterContainer>
                 <NavbarStyled.RightContainer>
-                    <NavbarStyled.ShoppingCart />
+                    <NavbarStyled.ShopingCardContainer>
+                        <NavbarStyled.ShoppingCart />
+                        <NavbarStyled.ShopingCardNum>6</NavbarStyled.ShopingCardNum>
+                    </NavbarStyled.ShopingCardContainer>
                     <NavbarStyled.UserCart />
                 </NavbarStyled.RightContainer>
             </NavbarStyled.Container>

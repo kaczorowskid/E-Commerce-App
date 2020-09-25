@@ -14,6 +14,7 @@ export const Container = styled.div<Props>`
     width: ${props => props.visible ? '300px' : '0px'};
     overflow: hidden;
     height: 100vh;
+    z-index: 1;
     opacity: 0.8;
     background-color: black;
     padding-top: 10px;
