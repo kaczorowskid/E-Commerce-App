@@ -1,12 +1,12 @@
 import * as Action from '../../action/navbar/navbarActionConst';
-import { InavbarReducer } from '../../types/navbar/navbar.types';
+import { InavbarTypes } from '../../types/navbar/navbar.types';
 import { InavbarAction } from '../../types/navbar/navbarAction.types';
 
-const initialState: InavbarReducer = {
+const initialState: InavbarTypes = {
     menuVisible: false
 }
 
-const navbarReducer = (state = initialState, action: InavbarAction): InavbarReducer => {
+const navbarReducer = (state = initialState, action: InavbarAction): InavbarTypes => {
     switch(action.type) {
         case Action.TOGGLE_MENU: 
             return {

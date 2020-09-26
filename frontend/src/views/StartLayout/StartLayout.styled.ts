@@ -13,7 +13,6 @@ export const StickyNavbarContainer = styled.nav`
 `;
 
 export const ItemsContainer = styled.div`
-
     display: grid;
 
     @media (min-width: ${size.mobileL}) {

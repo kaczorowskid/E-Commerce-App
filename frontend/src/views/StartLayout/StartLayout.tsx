@@ -1,7 +1,7 @@
 import React from 'react';
 import * as StartStyled from './StartLayout.styled';
 import { connect, ConnectedProps } from 'react-redux';
-import { AppState } from '../../store/store';
+import { AppState } from '../../reducers/AppState';
 import Navbar from '../../components/Navbar/Navbar';
 import Ad from '../../components/Ad/Ad';
 import Card from '../../components/Card/Card';

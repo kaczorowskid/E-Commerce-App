@@ -26,7 +26,6 @@ export const Container = styled.div`
     width: 320px;
     height: 100%;
     margin: 50px 5px 50px 5px;
-    /* border: 1px solid white; */
 
     &:hover {
         ${SizeContainer} {

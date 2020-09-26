@@ -1,6 +1,6 @@
 import * as Action from '../../action/navbar/navbarActionConst';
 
-export interface ItoggleMenu {
+interface ItoggleMenu {
     type: typeof Action.TOGGLE_MENU
 }
 

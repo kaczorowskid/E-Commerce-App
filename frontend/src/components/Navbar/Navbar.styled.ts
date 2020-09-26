@@ -10,6 +10,7 @@ export const Container = styled.div`
     height: 120px;
     display: flex;
     background-color: black;
+    z-index: 10;
 
     @media (max-width: ${size.mobileM}) and 
     (max-width: ${size.mobileL}),
@@ -100,7 +101,7 @@ export const CenterContainer = styled.div`
 export const RightContainer = styled.div`
     width:50%;
     display: flex;
-    justify-content: end;
+    justify-content: flex-end;
     align-items: center;
     margin-right: 100px;
 
@@ -125,9 +126,10 @@ export const ShopingCardNum = styled.span`
     background-color: orange;
     top: -15px;
     left: -30px;
-    color: white;
-    width: 30px;
-    height: 30px;
+    color: black;
+    /* font-weight: bold; */
+    width: 25px;
+    height: 25px;
     display: inline-flex;
     justify-content: center;
     align-items: center;

@@ -1,3 +1,3 @@
-export interface InavbarReducer{
+export interface InavbarTypes{
     menuVisible: boolean
 }
