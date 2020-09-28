@@ -9,6 +9,8 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Auth from './views/Login/Login';
+import Register from './views/Register/Register';
 
 
 const App: React.FC = () => {
@@ -17,11 +19,12 @@ const App: React.FC = () => {
     <div>
       <Provider store={store}>
         <GlobalStyle />
-        
+
         <Router>
           <Switch>
-            <Route path = '/index' component = {StartLayout} />
-           
+            <Route path='/index' component={StartLayout} />
+            <Route path='/auth-login' component={Auth} />
+            <Route path = '/auth-register' component = {Register} />
           </Switch>
         </Router>
 
