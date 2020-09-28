@@ -46,4 +46,9 @@ export const RegistryButton = styled.button`
     font-size: 15px;
     font-weight: bold;
     margin-top: 20px;
+
+    &:hover {
+        background-color: #aaa;
+        color: black;
+    }
 `;

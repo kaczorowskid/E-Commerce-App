@@ -10,6 +10,7 @@ import UserPopup from '../../components/UserPopup/UserPopup';
 import cioochy from '../../assest/images/cioochy.jpg';
 import boot from '../../assest/images/boot.jpg'
 import boot1 from '../../assest/images/but1.jpg'
+import Footer from '../../components/Footer/Footer';
 
 
 interface linkStateProps {
@@ -54,6 +55,7 @@ const StartLayout: React.FC<Props> = ({menuVisible}) => {
                     <StartStyled.Item><Card imgSource={boot} /></StartStyled.Item>
                 </StartStyled.ItemsContainer>
             </StartStyled.Container>
+            <Footer />
         </div>
     )
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
 import * as Styled from './Register.styled';
 
@@ -16,6 +17,7 @@ const Register: React.FC = () => {
                     <Styled.RegistryButton>Zarejestruj się</Styled.RegistryButton>
                 </Styled.FormContainer>
             </Styled.Container>
+            <Footer />
         </div>
     )
 }

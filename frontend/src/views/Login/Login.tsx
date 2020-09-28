@@ -1,6 +1,7 @@
 import React from 'react';
 import * as Styled from './Login.styled';
 import Navbar from '../../components/Navbar/Navbar';
+import Footer from '../../components/Footer/Footer';
 
 const Login: React.FC = () => {
     return (
@@ -8,8 +9,8 @@ const Login: React.FC = () => {
 
             <Navbar />
             <Styled.Container>
-                <h1>Zaloguj się</h1>
                 <Styled.FormContainer>
+                <h1>Zaloguj się</h1>
                     <Styled.InputData placeholder="E-mail" />
                     <Styled.InputData placeholder="Hasło" />
                     <Styled.ButtonsContainer>
@@ -18,6 +19,7 @@ const Login: React.FC = () => {
                     </Styled.ButtonsContainer>
                 </Styled.FormContainer>
             </Styled.Container>
+            <Footer />
         </div>
     )
 }

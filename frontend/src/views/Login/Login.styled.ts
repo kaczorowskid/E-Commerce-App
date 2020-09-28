@@ -49,7 +49,11 @@ export const LoginButton = styled.button`
     color: white;
     font-size: 15px;
     font-weight: bold;
-    /* margin-right: 1px; */
+    
+    &:hover {
+        background-color: #aaa;
+        color: black;
+    }
 `;
 
 export const RegistryButton = styled.button`
@@ -60,5 +64,9 @@ export const RegistryButton = styled.button`
     color: black;
     font-size: 15px;
     font-weight: bold;
-    /* margin-left: 1px; */
+    
+    &:hover {
+        background-color: #aaa;
+        color: white;
+    }
 `;
