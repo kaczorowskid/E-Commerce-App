@@ -46,6 +46,7 @@ export const RegistryButton = styled.button`
     font-size: 15px;
     font-weight: bold;
     margin-top: 20px;
+    cursor: pointer;
 
     &:hover {
         background-color: #aaa;

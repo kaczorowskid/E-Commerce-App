@@ -2,6 +2,8 @@ import React from 'react';
 import * as NavbarStyled from './Navbar.styled';
 import { connect, ConnectedProps } from 'react-redux';
 import { toggleMenu } from '../../action/navbar/navbarAction';
+import { Link } from 'react-router-dom';
+import { config } from '../../config';
 
 interface linkDispatchProps {
     toggleMenu: () => Object
@@ -29,14 +31,18 @@ const Navbar: React.FC<Props> = ({ toggleMenu }) => {
                     </NavbarStyled.InputContainer>
                 </NavbarStyled.LeftContainer>
                 <NavbarStyled.CenterContainer>
-                    <h2>RUBShop</h2>
+                    <Link style = {{textDecoration: 'none'}} to = {config.startSitePath}>
+                        <NavbarStyled.Logo>RUBShop</NavbarStyled.Logo>
+                    </Link>
                 </NavbarStyled.CenterContainer>
                 <NavbarStyled.RightContainer>
                     <NavbarStyled.ShopingCardContainer>
                         <NavbarStyled.ShoppingCart />
                         <NavbarStyled.ShopingCardNum>6</NavbarStyled.ShopingCardNum>
                     </NavbarStyled.ShopingCardContainer>
-                    <NavbarStyled.UserCart />
+                    <Link to={config.loginPath} >
+                        <NavbarStyled.UserCart />
+                    </Link>
                 </NavbarStyled.RightContainer>
             </NavbarStyled.Container>
         </div>

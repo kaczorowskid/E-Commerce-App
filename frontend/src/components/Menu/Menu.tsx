@@ -1,45 +1,23 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as MenuStyled from './Menu.styled';
-import { connect, ConnectedProps } from 'react-redux';
-import { AppState } from '../../reducers/AppState';
-import { toggleWomenCategory, toggleMenCategory } from '../../action/menu/menuAction';
 
-interface AppProps {
+interface Props {
     visible: boolean
 }
 
-interface linkStateProps {
-    womenCategoryVisible: boolean;
-    menCategoryVisible: boolean;
-}
+const Menu: React.FC<Props> = ({visible}) => {
 
-interface linkDispatchProps {
-    toggleWomenCategory: () => Object;
-    toggleMenCategory: () => Object;
-}
+    const [womenCategoryVisible, womenToogleVisible] = useState(true);
+    const [menCategoryVisible, menToogleVisible] = useState(true);
 
-const mapStateToProps = (state: AppState): linkStateProps => ({
-    womenCategoryVisible: state.menuReducer.womenCategoryVisible,
-    menCategoryVisible: state.menuReducer.menCategoryVisible
-})
 
-const mapDispatchToProps: linkDispatchProps = {
-    toggleWomenCategory,
-    toggleMenCategory
-}
-
-const connector = connect(mapStateToProps, mapDispatchToProps);
-
-type Props = ConnectedProps<typeof connector> & AppProps
-
-const Menu: React.FC<Props> = ({ visible, toggleWomenCategory, womenCategoryVisible, toggleMenCategory, menCategoryVisible }) => {
     return (
         <div>
             <MenuStyled.Container visible={visible}>
 
                 <MenuStyled.MenuSexContainer>
                     {womenCategoryVisible ? <MenuStyled.FolderOpenIcon /> : <MenuStyled.FolderClosedIcon />}
-                    <MenuStyled.MenuSex onClick={() => toggleWomenCategory()} >Kobieta</MenuStyled.MenuSex>
+                    <MenuStyled.MenuSex onClick = {() => womenToogleVisible(!womenCategoryVisible)} >Kobieta</MenuStyled.MenuSex>
                 </MenuStyled.MenuSexContainer>
                 <MenuStyled.MenuItemsContainer show={womenCategoryVisible} >
                     <MenuStyled.MenuItem>Buty</MenuStyled.MenuItem>
@@ -52,7 +30,7 @@ const Menu: React.FC<Props> = ({ visible, toggleWomenCategory, womenCategoryVisi
 
                 <MenuStyled.MenuSexContainer>
                     {menCategoryVisible ? <MenuStyled.FolderOpenIcon /> : <MenuStyled.FolderClosedIcon />}
-                    <MenuStyled.MenuSex onClick={() => toggleMenCategory()} >Mężczyzna</MenuStyled.MenuSex>
+                    <MenuStyled.MenuSex onClick = {() => menToogleVisible(!menCategoryVisible)} >Mężczyzna</MenuStyled.MenuSex>
                 </MenuStyled.MenuSexContainer>
                 <MenuStyled.MenuItemsContainer show={menCategoryVisible}>
                     <MenuStyled.MenuItem>Buty</MenuStyled.MenuItem>
@@ -70,4 +48,4 @@ const Menu: React.FC<Props> = ({ visible, toggleWomenCategory, womenCategoryVisi
 
 
 
-export default connector(Menu);
+export default Menu;

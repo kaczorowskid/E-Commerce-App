@@ -28,7 +28,7 @@ type Props = ConnectedProps<typeof connector>;
 const StartLayout: React.FC<Props> = ({menuVisible}) => {
     return (
         <div>
-            <Menu visible = {menuVisible}/>
+            <Menu visible = {menuVisible} />
             <StartStyled.StickyNavbarContainer>
                 <Navbar />
             </StartStyled.StickyNavbarContainer>

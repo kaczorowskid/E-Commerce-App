@@ -49,6 +49,7 @@ export const LoginButton = styled.button`
     color: white;
     font-size: 15px;
     font-weight: bold;
+    cursor: pointer;
     
     &:hover {
         background-color: #aaa;
@@ -64,6 +65,7 @@ export const RegistryButton = styled.button`
     color: black;
     font-size: 15px;
     font-weight: bold;
+    cursor: pointer;
     
     &:hover {
         background-color: #aaa;

@@ -98,6 +98,13 @@ export const CenterContainer = styled.div`
     }
 `;
 
+export const Logo = styled.span`
+    color: white;
+    font-size: 30px;
+    font-weight: bold;
+    text-decoration: none;
+`;
+
 export const RightContainer = styled.div`
     width:50%;
     display: flex;
