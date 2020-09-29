@@ -3,17 +3,17 @@ import * as jwt from 'jsonwebtoken';
 import { Model } from 'sequelize/types';
 import { IUser } from '../../types/User/IUser.model';
 import { ILoginMsg } from '../../types/User/IUserService.model';
-import * as userModel from '../models/User';
+import { User } from '../models/User';
 
 
 export class UserService {
     find() {
-        userModel.User.findAll({}).then(result => console.log(result));
+        User.findAll({}).then(result => console.log(result));
     }
 
     async register({email, password, role}: IUser){
         const hashPassword = await bcrypt.hash(password, 10);
-        userModel.User.create({
+        User.create({
             email: email,
             password: hashPassword,
             role: role
@@ -21,7 +21,7 @@ export class UserService {
     }
 
     async login({email, password}: IUser): Promise<ILoginMsg> {
-        const user: any = await userModel.User.findOne({ where: {email}})
+        const user: any = await User.findOne({ where: {email}})
         console.log(typeof user);
         if(user == null) return Promise.reject();
         if(await bcrypt.compare(password, user.password)) {

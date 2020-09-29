@@ -7,7 +7,7 @@ export enum EUser {
     Admin = 'ADMIN'
 }
 
-export interface UserInstance extends Sequelize.Model<IUserDBModel, IUser> {}
+interface UserInstance extends Sequelize.Model<IUserDBModel, IUser> {}
 
 export const User = sequelize.define<UserInstance>('user', {
     id: {

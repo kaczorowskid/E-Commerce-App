@@ -15,3 +15,9 @@ app.use("/", router);
 
 app.listen(port, () => console.log(`App listen on port ${port}`));
 
+
+// import { CategoryService } from './database/services/category.service';
+
+// const cat = new CategoryService();
+
+// cat.getWomenCategory();
