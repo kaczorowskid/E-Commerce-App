@@ -33,12 +33,11 @@ export const InputData = styled.input<{error: boolean}>`
     padding-left: 14px;
 
     &::placeholder {
+        color: ${props => props.error ? 'red' : 'black'};
         opacity: 1;
         font-weight: bold;
     }
 `;
-
-
 
 export const RegistryButton = styled.button`
     width: 100%;
@@ -57,4 +56,10 @@ export const RegistryButton = styled.button`
     }
 `;
 
+export const ErrorInfo = styled.span`
+    width: 100%;
+    color: red;
+    font-weight: bold;
+    margin-bottom: 10px;
+`;
 
