@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { size } from '../../components/devicesWidth.styled';
 
+
 export const Container = styled.div`
     width: 100%;
     height: calc(100vh - 240px);
@@ -16,16 +17,17 @@ export const FormContainer = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    /* border: 1px solid red; */
     
     @media  (max-width: ${size.mobileL}) {
         width: 100%;
     }
 `;
 
-export const InputData = styled.input`
+export const InputData = styled.input<{error: boolean}>`
     width: 95%;
     height: 35px;
-    border: 2px solid black;
+    border: ${props => props.error ? '2px solid red' : '2px solid black'};
     margin: 10px 0;
     font-size: 14px;
     padding-left: 14px;
@@ -35,6 +37,7 @@ export const InputData = styled.input`
         font-weight: bold;
     }
 `;
+
 
 
 export const RegistryButton = styled.button`
@@ -53,3 +56,5 @@ export const RegistryButton = styled.button`
         color: black;
     }
 `;
+
+

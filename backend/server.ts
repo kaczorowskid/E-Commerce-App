@@ -7,17 +7,12 @@ import router from "./routes/router";
 const app = express();
 const port = process.env.PORT || 4200;
 
-app.use(cors());
+app.use(cors({
+    origin: 'http://localhost:3000'
+}));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(morgan("dev"));
 app.use("/", router);
 
 app.listen(port, () => console.log(`App listen on port ${port}`));
-
-
-// import { CategoryService } from './database/services/category.service';
-
-// const cat = new CategoryService();
-
-// cat.getWomenCategory();

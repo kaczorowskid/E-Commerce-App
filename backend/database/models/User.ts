@@ -15,7 +15,10 @@ export const User = sequelize.define<UserInstance>('user', {
         autoIncrement: true,
         primaryKey: true
     },
-    email: Sequelize.DataTypes.STRING,
+    email: {
+        type: Sequelize.DataTypes.STRING,
+        unique: true
+    },
     password: Sequelize.DataTypes.STRING,
     role: Sequelize.DataTypes.STRING
 })

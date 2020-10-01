@@ -1,5 +1,4 @@
-import { isBuffer } from "util";
-export interface ILoginMsg {
+export interface IMsg {
     msg: string,
     code: number
 }

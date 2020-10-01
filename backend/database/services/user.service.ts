@@ -1,39 +1,46 @@
 import * as bcrypt from 'bcrypt';
+import { create } from 'domain';
 import * as jwt from 'jsonwebtoken';
 import { Model } from 'sequelize/types';
 import { IUser } from '../../types/User/IUser.model';
-import { ILoginMsg } from '../../types/User/IUserService.model';
+import { IMsg } from '../../types/User/IUserService.model';
 import { User } from '../models/User';
 
+const createMsg = (msg: string, code: number): IMsg => {
+    return {
+        msg, code
+    }
+}
 
 export class UserService {
-    find() {
-        User.findAll({}).then(result => console.log(result));
-    }
-
-    async register({email, password, role}: IUser){
+    async register({email, password, role}: IUser): Promise<IMsg>{
         const hashPassword = await bcrypt.hash(password, 10);
-        User.create({
-            email: email,
-            password: hashPassword,
-            role: role
-        }).then(a => console.log(a));
+        const userExist = await User.count({where: {email: email}})
+
+        if(!userExist) {
+            await User.create({
+                email: email,
+                password: hashPassword,
+                role: role
+            })
+            return createMsg('User created', 200);
+        }
+        else {
+            return createMsg('User is exist', 401);
+        }
+
     }
 
-    async login({email, password}: IUser): Promise<ILoginMsg> {
+    async login({email, password}: IUser): Promise<IMsg> {
+        console.log(email);
+        console.log(password);
         const user: any = await User.findOne({ where: {email}})
-        console.log(typeof user);
-        if(user == null) return Promise.reject();
-        if(await bcrypt.compare(password, user.password)) {
-            return new Promise((resolve) => resolve({
-                msg: 'poprawnie zalogowano',
-                code: 200
-            })) 
-        } else {
-            return new Promise((resolve) => resolve({
-                msg: 'brak dostępu',
-                code: 500
-            })) 
-        }
+
+        if(user === null)  return createMsg('brak usera', 401);
+        
+        return await bcrypt.compare(password, user.password) ?
+            createMsg('poprawnie zalogowano', 200) :
+            createMsg('brak dostępu', 401);
+        
     }
 }

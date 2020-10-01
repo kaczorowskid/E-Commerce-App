@@ -3,35 +3,34 @@ import { Router, Request, Response } from 'express';
 import { EUser } from '../database/models/User';
 import { UserService } from '../database/services/user.service';
 import { CategoryService } from '../database/services/category.service';
-import { ILoginMsg } from '../types/User/IUserService.model';
+import { IMsg } from '../types/User/IUserService.model';
 
 const router = Router();
 const User = new UserService();
 const Category = new CategoryService();
 
-router.get('/register', (req: Request, res: Response) => {
-    console.log('user serwice');
-    User.register({
-        email: 'test@test.com',
-        password: 'test123',
+router.get('/register', async (req: Request, res: Response) => {
+    const user: IMsg = await User.register({
+        email: req.body.email,
+        password: req.body.password,
         role: EUser.User
     })
+
+    res.status(user.code).send({msg: user.msg});
 })
 
-
-router.get('/login', async (req: Request, res: Response) => {
-    const log: ILoginMsg = await User.login({
-        email: 'test@test.com',
-        password: 'test123',
-        role: EUser.User
+router.post('/login', async (req: Request, res: Response) => {
+    const log: any = await User.login({
+        email: req.body.email,
+        password: req.body.password,
     })
-    res.status(log.code).send(log.msg)
+    res.status(log.code).send({msg: log.msg})
 })
 
 router.get('/category', async (req: Request, res: Response) => {
     const menCategory: string[] = await Category.getMenCategory();
     const womenCategory: string[] = await Category.getWomenCategory();
-    res.send({menCategory, womenCategory})
+    res.send({ menCategory, womenCategory })
 })
 
 
