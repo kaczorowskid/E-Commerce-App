@@ -27,7 +27,7 @@ export class UserService {
             return createMsg('User created', 200);
         }
         else {
-            return createMsg('User is exist', 401);
+            return createMsg('Adres e-mail jest już w naszej bazie danych', 401);
         }
 
     }

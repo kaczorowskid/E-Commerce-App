@@ -16,6 +16,8 @@ const Register: React.FC = () => {
     const [errorEmailValue, setErrorEmailValue] = useState<boolean>(false);
     const [errorPasswordValue, setErrorPasswordValue] = useState<boolean>(false);
 
+    const [isRegister, setRegister] = useState<string>('');
+
     const sendData = (name: string, surname: string, email: string, password: string) => {
         const nameRegExp: RegExp = new RegExp('^[A-Z]*[a-zA-Z]{1,20}$');
         const emailRegExp: RegExp = new RegExp('^[a-zA-Z0-9]+@[a-z]+(.pl|.com)$');
@@ -31,7 +33,8 @@ const Register: React.FC = () => {
             surname,
             email,
             password
-        }).then(a => console.log("założono"));
+        }).then(res => setRegister(res.data.msg))
+        .catch(res => setRegister(res.response.data.msg))
 
     }
 
@@ -52,6 +55,7 @@ const Register: React.FC = () => {
                         {errorPasswordValue ? <Styled.ErrorInfo >Wymagana duża litera, liczba, znak specjalny</Styled.ErrorInfo> : null}
                     <Styled.RegistryButton onClick={() => sendData(nameValue, surnameValue, emailValue, passwordValue)} >Zarejestruj się</Styled.RegistryButton>
                 </Styled.FormContainer>
+                {`${isRegister}`}
             </Styled.Container>
             <Footer />
         </div>
