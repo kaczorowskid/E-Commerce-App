@@ -7,7 +7,7 @@ export enum EUser {
     Admin = 'ADMIN'
 }
 
-interface UserInstance extends Sequelize.Model<IUserDBModel, IUser> {}
+export interface UserInstance extends Sequelize.Model<IUserDBModel, IUser> {}
 
 export const User = sequelize.define<UserInstance>('user', {
     id: {
@@ -15,6 +15,8 @@ export const User = sequelize.define<UserInstance>('user', {
         autoIncrement: true,
         primaryKey: true
     },
+    name: Sequelize.DataTypes.STRING,
+    surname: Sequelize.DataTypes.STRING,
     email: {
         type: Sequelize.DataTypes.STRING,
         unique: true

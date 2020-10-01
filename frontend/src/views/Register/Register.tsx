@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import * as Styled from './Register.styled';
 import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
-import * as Styled from './Register.styled';
+import axios from 'axios';
 
 const Register: React.FC = () => {
 
@@ -25,8 +26,13 @@ const Register: React.FC = () => {
         emailRegExp.test(email) ? setErrorEmailValue(false) : setErrorEmailValue(true);
         passwordRegExp.test(password) ? setErrorPasswordValue(false) : setErrorPasswordValue(true);
 
-        console.log(password)
-        console.log(passwordRegExp.test(password));
+        axios.post('/register', {
+            name, 
+            surname,
+            email,
+            password
+        }).then(a => console.log("założono"));
+
     }
 
 
@@ -46,14 +52,6 @@ const Register: React.FC = () => {
                         {errorPasswordValue ? <Styled.ErrorInfo >Wymagana duża litera, liczba, znak specjalny</Styled.ErrorInfo> : null}
                     <Styled.RegistryButton onClick={() => sendData(nameValue, surnameValue, emailValue, passwordValue)} >Zarejestruj się</Styled.RegistryButton>
                 </Styled.FormContainer>
-                {/* <span> {nameValue} </span>
-                <span> {surnameValue} </span>
-                <span> {emailValue} </span>
-                <span> {passwordValue} </span>
-                <span> {`${errorNameValue}`} </span>
-                <span> {`${errorSurnameValue}`} </span>
-                <span> {`${errorEmailValue}`} </span>
-                <span> {`${errorPasswordValue}`} </span> */}
             </Styled.Container>
             <Footer />
         </div>

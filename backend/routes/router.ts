@@ -9,8 +9,10 @@ const router = Router();
 const User = new UserService();
 const Category = new CategoryService();
 
-router.get('/register', async (req: Request, res: Response) => {
+router.post('/register', async (req: Request, res: Response) => {
     const user: IMsg = await User.register({
+        name: req.body.name,
+        surname: req.body.surname,
         email: req.body.email,
         password: req.body.password,
         role: EUser.User
@@ -20,7 +22,7 @@ router.get('/register', async (req: Request, res: Response) => {
 })
 
 router.post('/login', async (req: Request, res: Response) => {
-    const log: any = await User.login({
+    const log: IMsg = await User.login({
         email: req.body.email,
         password: req.body.password,
     })
