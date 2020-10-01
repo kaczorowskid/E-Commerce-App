@@ -23,18 +23,29 @@ const Register: React.FC = () => {
         const emailRegExp: RegExp = new RegExp('^[a-zA-Z0-9]+@[a-z]+(.pl|.com)$');
         const passwordRegExp: RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,}$");
 
-        nameRegExp.test(name) ? setErrorNameValue(false) : setErrorNameValue(true)
-        nameRegExp.test(surname) ? setErrorSurnameValue(false) : setErrorSurnameValue(true);
-        emailRegExp.test(email) ? setErrorEmailValue(false) : setErrorEmailValue(true);
-        passwordRegExp.test(password) ? setErrorPasswordValue(false) : setErrorPasswordValue(true);
+        const nameErr: boolean = nameRegExp.test(name) ? false : true
+        const surnameErr: boolean = nameRegExp.test(surname) ? false : true;
+        const emailErr: boolean = emailRegExp.test(email) ? false : true;
+        const passErr: boolean = passwordRegExp.test(password) ? false : true;
 
-        axios.post('/register', {
-            name, 
-            surname,
-            email,
-            password
-        }).then(res => setRegister(res.data.msg))
-        .catch(res => setRegister(res.response.data.msg))
+        setErrorNameValue(nameErr);
+        setErrorSurnameValue(surnameErr);
+        setErrorEmailValue(emailErr);
+        setErrorPasswordValue(passErr);
+
+  
+        if(nameErr || surnameErr || emailErr || passErr) return;
+        else {
+            axios.post('/register', {
+                name, 
+                surname,
+                email,
+                password
+            }).then(res => setRegister(res.data.msg))
+            .catch(res => setRegister(res.response.data.msg))
+        }
+
+
 
     }
 
