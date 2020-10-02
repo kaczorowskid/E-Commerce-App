@@ -19,7 +19,7 @@ const Register: React.FC = () => {
     const [isRegister, setRegister] = useState<string>('');
 
     const sendData = (name: string, surname: string, email: string, password: string) => {
-        const nameRegExp: RegExp = new RegExp('^[A-Z]*[a-zA-Z]{1,20}$');
+        const nameRegExp: RegExp = new RegExp('^[A-Z][a-zA-Z]{1,20}$');
         const emailRegExp: RegExp = new RegExp('^[a-zA-Z0-9]+@[a-z]+(.pl|.com)$');
         const passwordRegExp: RegExp = new RegExp("^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[@$!%*?&])[A-Za-z0-9@$!%*?&]{8,}$");
 
@@ -33,7 +33,6 @@ const Register: React.FC = () => {
         setErrorEmailValue(emailErr);
         setErrorPasswordValue(passErr);
 
-  
         if(nameErr || surnameErr || emailErr || passErr) return;
         else {
             axios.post('/register', {
@@ -44,9 +43,6 @@ const Register: React.FC = () => {
             }).then(res => setRegister(res.data.msg))
             .catch(res => setRegister(res.response.data.msg))
         }
-
-
-
     }
 
 
