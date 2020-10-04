@@ -1,21 +1,15 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import express from 'express';
+import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
-import { IUser } from '../../types/User/IUser.model';
-import { IMsg, ILogin } from '../../types/User/IUserService.model';
 import { User } from '../models/User';
 
 export class UserController {
-    private createMsg = (msg: string, code: number, token?: string): ILogin => {
-        return {
-            msg, code, token
-        }
-    }
+    public async register(req: Request, res: Response) {
+        const { name, surname, email, password, role }: any = req.body;
 
-    public async register({ name, surname, email, password, role }: IUser): Promise<IMsg> {
         const hashPassword: string = await bcrypt.hash(password, 10);
         const userExist: number = await User.count({ where: { email: email } })
 
@@ -27,22 +21,24 @@ export class UserController {
                 password: hashPassword,
                 role: role
             })
-            return this.createMsg('User created', 200);
+            res.status(200).send({ msg: 'user created' });
         }
         else {
-            return this.createMsg('Adres e-mail jest już w naszej bazie danych', 401);
+            res.status(401).send({ msg: 'Adres e-mail jest już w naszej bazie danych' })
         }
 
     }
 
-    public async login({ email, password }: IUser): Promise<ILogin> {
-        const user: any = await User.findOne({ where: { email } })
-        if (user === null) return this.createMsg('brak usera', 401);
+    public async login(req: Request, res: Response) {
+        const { email, password } = req.body;
+
+        const user: any = await User.findOne({ where: { email: email } })
+        if (user === null)  res.status(401).send({ msg: 'brak usera' });
 
         const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY as string);
 
-        return await bcrypt.compare(password, user.password) ?
-            this.createMsg('poprawnie zalogowano', 200, token) :
-            this.createMsg('brak dostępu', 401);
+        await bcrypt.compare(password, user.password) ?
+            res.header('auth-token', token).send({ msg: 'poprawnie zalogowano' }) :
+            res.status(401).send({ msg: 'brak dostępu' });
     }
 }

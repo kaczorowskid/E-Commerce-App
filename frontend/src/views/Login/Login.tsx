@@ -16,7 +16,7 @@ const Login: React.FC = () => {
 
 
     const sendData = (email: string, password: string) => {
-        axios.post('/login', {
+        axios.post('/user/login', {
             email: email,
             password: password
         }).then(result =>  {

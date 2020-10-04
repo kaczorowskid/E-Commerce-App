@@ -19,7 +19,7 @@ const Menu: React.FC<Props> = ({ visible }) => {
     const [category, setCategory] = useState<ICategory>();
 
     useEffect(() => {
-        axios.get('/category').then((res: any) => { console.log(res.data); setCategory(res.data) });
+        axios.get('/category/category').then((res: any) => setCategory(res.data));
     }, [])
 
     return (

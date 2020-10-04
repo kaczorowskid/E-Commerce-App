@@ -35,7 +35,7 @@ const Register: React.FC = () => {
 
         if(nameErr || surnameErr || emailErr || passErr) return;
         else {
-            axios.post('/register', {
+            axios.post('/user/register', {
                 name, 
                 surname,
                 email,

@@ -2,11 +2,13 @@ import express, { Request, Response, Application } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import morgan from "morgan";
-import { UserRouter } from './routes/router';
-
+import { UserRouter } from './routes/userRouter';
+import { CategoryRouter } from './routes/categoryRouter';
+ 
 class Server {
     public app: Application;
     public userRouter: UserRouter = new UserRouter();
+    public categoryRouter: CategoryRouter = new CategoryRouter();
     private port = process.env.PORT || 4200;
 
     constructor() {
@@ -23,7 +25,8 @@ class Server {
     }
 
     routes() {
-        this.app.use("/", this.userRouter.router);
+        this.app.use("/user", this.userRouter.router);
+        this.app.use('/category', this.categoryRouter.router);
     }
 
     run() {

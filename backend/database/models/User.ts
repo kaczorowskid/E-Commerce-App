@@ -1,4 +1,4 @@
-import * as Sequelize from 'sequelize';
+import { Model, DataTypes} from 'sequelize';
 import { IUser, IUserDBModel } from '../../types/User/IUser.model';
 import sequelize from '../conectionDB';
 
@@ -7,20 +7,20 @@ export enum EUser {
     Admin = 'ADMIN'
 }
 
-export interface UserInstance extends Sequelize.Model<IUserDBModel, IUser> {}
+export interface UserInstance extends Model<IUserDBModel, IUser> {}
 
 export const User = sequelize.define<UserInstance>('user', {
     id: {
-        type: Sequelize.DataTypes.NUMBER,
+        type: DataTypes.NUMBER,
         autoIncrement: true,
         primaryKey: true
     },
-    name: Sequelize.DataTypes.STRING,
-    surname: Sequelize.DataTypes.STRING,
+    name: DataTypes.STRING,
+    surname: DataTypes.STRING,
     email: {
-        type: Sequelize.DataTypes.STRING,
+        type: DataTypes.STRING,
         unique: true
     },
-    password: Sequelize.DataTypes.STRING,
-    role: Sequelize.DataTypes.STRING
+    password: DataTypes.STRING,
+    role: DataTypes.STRING
 })
