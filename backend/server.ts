@@ -1,16 +1,35 @@
-import express, { Request, Response } from "express";
+import express, { Request, Response, Application } from "express";
 import cors from "cors";
 import bodyParser from "body-parser";
 import morgan from "morgan";
-import router from "./routes/router";
+import { UserRouter } from './routes/router';
 
-const app = express();
-const port = process.env.PORT || 4200;
+class Server {
+    public app: Application;
+    public userRouter: UserRouter = new UserRouter();
+    private port = process.env.PORT || 4200;
 
-app.use(cors());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(morgan("dev"));
-app.use("/", router);
+    constructor() {
+        this.app = express();
+        this.config();
+        this.routes();
+    }
 
-app.listen(port, () => console.log(`App listen on port ${port}`));
+    config() {
+        this.app.use(cors());
+        this.app.use(bodyParser.json());
+        this.app.use(bodyParser.urlencoded({ extended: true }));
+        this.app.use(morgan("dev"));
+    }
+
+    routes() {
+        this.app.use("/", this.userRouter.router);
+    }
+
+    run() {
+        this.app.listen(this.port, () => console.log(`App listen on port ${this.port}`))
+    }
+}
+
+const server = new Server();
+server.run();

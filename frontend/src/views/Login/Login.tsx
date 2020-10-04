@@ -19,8 +19,14 @@ const Login: React.FC = () => {
         axios.post('/login', {
             email: email,
             password: password
-        }).then(result =>  getVerification(result.data.msg))
-        .catch(err => getVerification(err.response.data.msg))
+        }).then(result =>  {
+            localStorage.setItem('token', result.headers['auth-token'])
+            getVerification(result.data.msg)
+        })
+        .catch(err => {
+            localStorage.removeItem('token');
+            getVerification(err.response.data.msg)
+        })
     }
 
 

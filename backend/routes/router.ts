@@ -1,39 +1,57 @@
-import Axios from 'axios';
-import { Router, Request, Response } from 'express';
+import { Request, Response, Router } from 'express';
 import { EUser } from '../database/models/User';
-import { UserService } from '../database/services/user.service';
-import { CategoryService } from '../database/services/category.service';
-import { IMsg } from '../types/User/IUserService.model';
+import { UserController } from '../database/controllers/user.controller';
+import { CategoryController } from '../database/controllers/category.controller';
+import { IMsg, ILogin } from '../types/User/IUserService.model';
+import { Auth } from './auth';
 
-const router = Router();
-const User = new UserService();
-const Category = new CategoryService();
+export class UserRouter {
+    public router: Router;
+    private User: UserController = new UserController();
+    private Category: CategoryController = new CategoryController();
+    private auth: Auth = new Auth();
 
-router.post('/register', async (req: Request, res: Response) => {
-    const user: IMsg = await User.register({
-        name: req.body.name,
-        surname: req.body.surname,
-        email: req.body.email,
-        password: req.body.password,
-        role: EUser.User
-    })
+    constructor() {
+        this.router = Router();
+        this.routes();
+    }
 
-    res.status(user.code).send({msg: user.msg});
-})
+    private routes() {
+        this.router.post('/register', async (req: Request, res: Response) => {
+            const user: IMsg = await this.User.register({
+                name: req.body.name,
+                surname: req.body.surname,
+                email: req.body.email,
+                password: req.body.password,
+                role: EUser.User
+            })
 
-router.post('/login', async (req: Request, res: Response) => {
-    const log: IMsg = await User.login({
-        email: req.body.email,
-        password: req.body.password,
-    })
-    res.status(log.code).send({msg: log.msg})
-})
+            res.status(user.code).send({ msg: user.msg });
+        })
 
-router.get('/category', async (req: Request, res: Response) => {
-    const menCategory: string[] = await Category.getMenCategory();
-    const womenCategory: string[] = await Category.getWomenCategory();
-    res.send({ menCategory, womenCategory })
-})
+        this.router.post('/login', async (req: Request, res: Response) => {
+            const log: ILogin = await this.User.login({
+                email: req.body.email,
+                password: req.body.password,
+            })
+            if (log.token) {
+                res.header('auth-token', log.token).send({ msg: log.msg });
+            } else {
+                res.status(log.code).send({ msg: log.msg })
+            }
+        })
 
 
-export default router;
+        this.router.get('/test', this.auth.verifyToken,function (req: Request, res: Response)  {
+            res.send({
+                rzeczy: 'test'
+            })
+        })
+
+        this.router.get('/category', async (req: Request, res: Response) => {
+            const menCategory: string[] = await this.Category.getMenCategory();
+            const womenCategory: string[] = await this.Category.getWomenCategory();
+            res.send({ menCategory, womenCategory })
+        })
+    }
+}
