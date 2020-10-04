@@ -8,7 +8,7 @@ import { User } from '../models/User';
 
 export class UserController {
     public async register(req: Request, res: Response) {
-        const { name, surname, email, password, role }: any = req.body;
+        const { name, surname, email, password, role } = req.body;
 
         const hashPassword: string = await bcrypt.hash(password, 10);
         const userExist: number = await User.count({ where: { email: email } })
