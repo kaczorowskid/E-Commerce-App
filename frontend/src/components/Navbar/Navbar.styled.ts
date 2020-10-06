@@ -130,13 +130,13 @@ export const ShopingCardContainer = styled.div`
 
 export const ShopingCardNum = styled.span`
     position: relative;
-    background-color: orange;
+    background-color: #49b788;
     top: -15px;
     left: -30px;
     color: black;
-    /* font-weight: bold; */
     width: 25px;
     height: 25px;
+    font-weight: bold;
     display: inline-flex;
     justify-content: center;
     align-items: center;
