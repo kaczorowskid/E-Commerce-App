@@ -1,16 +1,6 @@
 import { Router } from 'express';
-import { CategoryController } from '../database/controllers/category.controller';
+import { getCategory } from '../database/controllers/category.controller';
 
-export class CategoryRouter {
-    public router: Router = Router();
-    private Category: CategoryController = new CategoryController();
+export const categoryRouter = Router();
 
-    constructor() {
-        this.router = Router();
-        this.routes();
-    }
-
-    routes() {
-        this.router.get('/category', this.Category.getCategory)
-    }
-}
+categoryRouter.get('/category', getCategory)

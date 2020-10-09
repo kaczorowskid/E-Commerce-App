@@ -1,22 +1,8 @@
 import { Router, Request, Response } from 'express';
-import { UserController } from '../database/controllers/user.controller';
-import { Auth } from './auth';
+import { register, login } from '../database/controllers/user.controller';
+import { verifyToken } from './auth';
 
-export class UserRouter {
-    public router: Router;
-    private User: UserController = new UserController();
-    private auth: Auth = new Auth();
-
-    constructor() {
-        this.router = Router();
-        this.routes();
-    }
-
-    private routes() {
-        this.router.post('/register', this.User.register)
-        this.router.post('/login', this.User.login)
-        this.router.get('/dupa', this.auth.verifyToken,  (req: Request, res: Response) => {
-            
-        })
-    }
-}
+export const userRouter = Router();
+ 
+userRouter.post('/register', register);
+userRouter.post('/login', login);
