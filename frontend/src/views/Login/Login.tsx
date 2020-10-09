@@ -20,6 +20,7 @@ const Login: React.FC = () => {
             email: email,
             password: password
         }).then(result =>  {
+            console.log(result.headers['auth-token'])
             localStorage.setItem('token', result.headers['auth-token'])
             getVerification(result.data.msg)
         })

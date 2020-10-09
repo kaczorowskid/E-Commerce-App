@@ -35,7 +35,9 @@ export class UserController {
         const user: any = await User.findOne({ where: { email: email } })
         if (user === null)  res.status(401).send({ msg: 'brak usera' });
 
-        const token = jwt.sign({ id: user.id }, process.env.SECRET_KEY as string);
+        const token = jwt.sign({ 
+            id: user.id
+        }, process.env.SECRET_KEY as string);
 
         await bcrypt.compare(password, user.password) ?
             res.header('auth-token', token).send({ msg: 'poprawnie zalogowano' }) :

@@ -5,7 +5,8 @@ export class Auth {
     verifyToken(req: Request, res: Response, next: NextFunction) {
         const token: any = req.header('auth-token');
         try {
-            jwt.verify(token, process.env.SECRET_KEY as string);
+            const user = jwt.verify(token, process.env.SECRET_KEY as string);
+            console.log(user)
             next();
         } catch (err) {
             res.status(401).send({err})
