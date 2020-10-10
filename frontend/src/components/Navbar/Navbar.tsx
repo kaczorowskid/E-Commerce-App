@@ -1,28 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import * as NavbarStyled from './Navbar.styled';
-import { connect, ConnectedProps } from 'react-redux';
-import { toggleMenu } from '../../action/navbar/navbarAction';
 import { Link } from 'react-router-dom';
 import { config } from '../../config';
+import Menu from '../Menu/Menu';
 
-interface linkDispatchProps {
-    toggleMenu: () => Object
-}
 
-const mapDispatchToProps: linkDispatchProps = {
-    toggleMenu
-}
+const Navbar: React.FC = () => {
 
-const connector = connect(null, mapDispatchToProps)
+    const [menuVisible, setMenuVisible] = useState<boolean>(false);
 
-type Props = ConnectedProps<typeof connector>;
 
-const Navbar: React.FC<Props> = ({ toggleMenu }) => {
     return (
         <div>
+            <Menu visible = {menuVisible} />
             <NavbarStyled.Container>
                 <NavbarStyled.LeftContainer>
-                    <NavbarStyled.HamburgerButton onClick={() => toggleMenu()}>
+                    <NavbarStyled.HamburgerButton onClick = {() => setMenuVisible(!menuVisible)} >
                         <NavbarStyled.HamburgerMenu />
                     </NavbarStyled.HamburgerButton>
                     <NavbarStyled.InputContainer>
@@ -49,5 +42,5 @@ const Navbar: React.FC<Props> = ({ toggleMenu }) => {
     )
 }
 
-export default connector(Navbar);
+export default Navbar;
 

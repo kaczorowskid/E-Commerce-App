@@ -12,22 +12,9 @@ import boot1 from '../../assest/images/but1.jpg'
 import Footer from '../../components/Footer/Footer';
 
 
-interface linkStateProps {
-    menuVisible: boolean
-}
-
-const mapStateToProps = (state: AppState): linkStateProps => ({
-    menuVisible: state.navbarReducer.menuVisible
-})
-
-const connector = connect(mapStateToProps, null);
-
-type Props = ConnectedProps<typeof connector>;
-
-const StartLayout: React.FC<Props> = ({menuVisible}) => {
+const StartLayout: React.FC = () => {
     return (
         <div>
-            <Menu visible = {menuVisible} />
             <StartStyled.StickyNavbarContainer>
                 <Navbar />
             </StartStyled.StickyNavbarContainer>
@@ -59,4 +46,4 @@ const StartLayout: React.FC<Props> = ({menuVisible}) => {
     )
 }
 
-export default connector(StartLayout);
+export default StartLayout;

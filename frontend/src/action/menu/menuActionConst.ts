@@ -1,2 +1,0 @@
-export const TOGGLE_WOMEN_CATEGORY: string = 'TOOBLE_WOMEN_CATEGORY';
-export const TOGGLE_MEN_CATEGORY: string = 'TOOBLE_MEN_CATEGORY';
