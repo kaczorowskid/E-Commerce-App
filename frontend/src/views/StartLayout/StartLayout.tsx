@@ -15,6 +15,7 @@ import Footer from '../../components/Footer/Footer';
 const StartLayout: React.FC = () => {
     return (
         <div>
+            
             <StartStyled.StickyNavbarContainer>
                 <Navbar />
             </StartStyled.StickyNavbarContainer>
