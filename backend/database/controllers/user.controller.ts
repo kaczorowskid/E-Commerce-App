@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import { Request, Response } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/User';
@@ -38,10 +38,31 @@ export const login = async (req: Request, res: Response) => {
     if (user === null)  res.status(401).send({ msg: 'brak usera' });
 
     const token = jwt.sign({ 
-        id: user.id
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        surname: user.surname,
+        role: user.role
     }, process.env.SECRET_KEY as string);
 
     await bcrypt.compare(password, user.password) ?
-        res.header('auth-token', token).send({ msg: 'poprawnie zalogowano' }) :
+        res.header('auth-token', token).send({ }) :
         res.status(401).send({ msg: 'brak dostępu' });
+}
+
+export const getUser = (req: Request, res: Response, next: NextFunction) => {
+    const token: any = req.body.token;
+    console.log("token ", token)
+    try {
+        const user: any = jwt.verify(token, process.env.SECRET_KEY as string);
+        console.log(user)
+        res.status(200).send({
+            email: user.email,
+            name: user.name,
+            surname: user.surname,
+            role: user.role
+        })
+    } catch (err) {
+        res.status(401).send({err})
+    }
 }

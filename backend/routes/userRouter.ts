@@ -1,8 +1,8 @@
 import { Router, Request, Response } from 'express';
-import { register, login } from '../database/controllers/user.controller';
-import { verifyToken } from './auth';
+import { register, login, getUser } from '../database/controllers/user.controller';
 
 export const userRouter = Router();
  
 userRouter.post('/register', register);
 userRouter.post('/login', login);
+userRouter.post('/get-user', getUser);

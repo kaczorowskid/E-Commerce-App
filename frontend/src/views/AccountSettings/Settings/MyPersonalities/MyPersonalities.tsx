@@ -5,7 +5,7 @@ import InputPopUp from '../../../../components/InputPopUp/InputPopUp';
 
 const MyPersonalities: React.FC = () => {
 
-    const [nameVisible, changeNameVisible] = useState<boolean>(true);
+    const [nameVisible, changeNameVisible] = useState<boolean>(false);
     const [emailVisible, changeEmailVisible] = useState<boolean>(false);
     const [numberVisible, changeNumberVisible] = useState<boolean>(false);
     const [birthDateVisible, changeBirthDateVisible] = useState<boolean>(false);

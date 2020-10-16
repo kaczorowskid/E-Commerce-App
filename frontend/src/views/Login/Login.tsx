@@ -5,15 +5,17 @@ import Footer from '../../components/Footer/Footer';
 import { Link } from 'react-router-dom';
 import { config } from '../../config';
 import axios from 'axios';
+import { useHistory } from "react-router-dom";
 
 
 const Login: React.FC = () => {
 
-    const [emailValue, getEmailValue] = useState<string>('');
-    const [passwordValue, getPasswordValue] = useState<string>('');
-    const [loginVerification, getVerification] = useState<string>('');
+    const [emailValue, setEmailValue] = useState<string>('');
+    const [passwordValue, setPasswordValue] = useState<string>('');
+    const [loginVerification, setVerification] = useState<string>('');
+    const [isLogged, setLogged] = useState<boolean>(false);
 
-
+    const history = useHistory();
 
     const sendData = (email: string, password: string) => {
         axios.post('/user/login', {
@@ -22,23 +24,23 @@ const Login: React.FC = () => {
         }).then(result =>  {
             console.log(result.headers['auth-token'])
             localStorage.setItem('token', result.headers['auth-token'])
-            getVerification(result.data.msg)
+            history.push(config.startSitePath);
         })
         .catch(err => {
             localStorage.removeItem('token');
-            getVerification(err.response.data.msg)
+            setVerification(err.response.data.msg)
         })
     }
 
 
     return (
         <div>
-            <Navbar />
+            <Navbar isLogged = {isLogged}/>
             <Styled.Container>
                 <Styled.FormContainer>
                     <h1>Zaloguj się</h1>
-                    <Styled.InputData placeholder="E-mail" onChange={e => getEmailValue(e.target.value)} />
-                    <Styled.InputData placeholder="Hasło" onChange={e => getPasswordValue(e.target.value)} />
+                    <Styled.InputData placeholder="E-mail" onChange={e => setEmailValue(e.target.value)} />
+                    <Styled.InputData placeholder="Hasło" onChange={e => setPasswordValue(e.target.value)} />
                     <Styled.ButtonsContainer>
                         <Styled.LoginButton onClick={() => sendData(emailValue, passwordValue)} >Zaloguj się</Styled.LoginButton>
                         <Link to={config.registerPath} >

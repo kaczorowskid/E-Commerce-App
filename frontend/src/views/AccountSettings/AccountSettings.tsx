@@ -6,11 +6,13 @@ import MyOrders from './Settings/MyOrders/MyOrders';
 import MyPersonalities from './Settings/MyPersonalities/MyPersonalities';
 
 const AccountSettings: React.FC = () => {
-    const handleClick = (data: number) => {
-        setTabItem(data);
-    }
 
     const [tabItem, setTabItem] = useState<number>(2);
+
+    const logout = () => {
+        localStorage.setItem('token', '');
+        console.log(localStorage.getItem('token'))
+    }
 
     return (
         <div>
@@ -22,8 +24,9 @@ const AccountSettings: React.FC = () => {
                 </Styled.ItemContainer>
                 <Styled.OptionsWrapper>
                     <Styled.OptionsContainer value = {tabItem}>
-                        <Styled.OptionsItem onClick = {() => handleClick(1)} >Moje zamówienia</Styled.OptionsItem>
-                        <Styled.OptionsItem onClick = {() => handleClick(2)} >Zmień swoje dane</Styled.OptionsItem>
+                        <Styled.OptionsItem onClick = {() => setTabItem(1)} >Moje zamówienia</Styled.OptionsItem>
+                        <Styled.OptionsItem onClick = {() => setTabItem(2)} >Zmień swoje dane</Styled.OptionsItem>
+                        <button onClick = {() => logout()} >wyloguj</button>
                     </Styled.OptionsContainer>
                 </Styled.OptionsWrapper>
             </Styled.Container>
