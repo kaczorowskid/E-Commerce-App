@@ -48,10 +48,10 @@ const MyPersonalities: React.FC = () => {
                     Ustawienia danych personalnych
                </Styled.Info>
 
-                {nameVisible ? <InputPopUp email = {email} edit = {config.userDataEdit.name} title='Edytuj imię i nazwisko' hide={changeNameVisible} /> : null}
-                {numberVisible ? <InputPopUp email = {email} edit = {config.userDataEdit.telefonNumber} title='Edytuj numer telefonu' hide={changeNumberVisible} /> : null}
-                {myAddressVisible ? <InputPopUp email = {email} edit = {config.userDataEdit.myAddress} title='Edytuj swój adres' hide={changeMyAddressVisible} /> : null}
-                {shippingAddressVisible ? <InputPopUp email = {email} edit = {config.userDataEdit.shippingAddress} title='Edytuj adres wysyłki' hide={changeShippingAddressVisible} /> : null}
+                {nameVisible ? <InputPopUp email = {email} url = {config.userDataEdit.name} edit = 'small' title='Edytuj imię i nazwisko' hide={changeNameVisible} /> : null}
+                {numberVisible ? <InputPopUp email = {email} url = {config.userDataEdit.telefonNumber} edit = 'small' title='Edytuj numer telefonu' hide={changeNumberVisible} /> : null}
+                {myAddressVisible ? <InputPopUp email = {email} url = {config.userDataEdit.myAddress} edit = 'big' disabledName = {true} title='Edytuj swój adres' hide={changeMyAddressVisible} /> : null}
+                {shippingAddressVisible ? <InputPopUp email = {email} url = {config.userDataEdit.shippingAddress} edit = 'big' title='Edytuj adres wysyłki' hide={changeShippingAddressVisible} /> : null}
 
                 <Styled.GridDataPersonality>
                     <Styled.DataContainer>

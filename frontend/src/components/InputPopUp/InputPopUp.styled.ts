@@ -9,9 +9,9 @@ export const Container = styled.div`
     height: 100%;
 `;
 
-export const InpuPopUpContainer = styled.div`
+export const InpuPopUpContainer = styled.div<{size: string}>`
     width: 400px;
-    height: 200px;
+    height: ${props => props.size === 'big' ? '320px' : '150px'};
     position: absolute;
     top: 50%;
     left: 50%;
@@ -21,7 +21,7 @@ export const InpuPopUpContainer = styled.div`
     flex-direction: column;
     background-color: #717171;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-evenly;
 `;
 
 export const Info = styled.span`
@@ -51,7 +51,7 @@ export const ButtonsContainer = styled.div`
     display: flex;
     justify-content: space-evenly;
     width: 100%;
-    height: 20%;
+    height: 40px;
 `;
 
 export const InputDataButton = styled.button`

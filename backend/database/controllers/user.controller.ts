@@ -65,26 +65,69 @@ export const getUser = async (req: Request, res: Response, next: NextFunction) =
     }
 }
 
-export const userUpdateName = (req: Request, res: Response, next: NextFunction) => {
-    const { email, data } = req.body;
+export const userUpdateName = async (req: Request, res: Response, next: NextFunction) => {
+    const { email, inputData } = req.body;
 
-    User.update(
-        {name: data},
-        {where: {email: email}}
-    )
-    .then(a => console.log(a))
-
-    res.status(200).send('dupa')
+    try {
+        await User.update(
+            {name: inputData},
+            {where: {email: email}}
+        )
+        res.status(200).send({msg: 'succes'});
+    } catch(err) {
+        res.status(404).send(err)
+    }
 }
 
-export const userUpdatePhoneNumber = (req: Request, res: Response, next: NextFunction) => {
-    const { email, data } = req.body;
+export const userUpdatePhoneNumber = async (req: Request, res: Response, next: NextFunction) => {
+    const { email, inputData } = req.body;
 
-    User.update(
-        {telefonnumber: data},
-        {where: {email: email}}
-    )
-    .then(a => console.log(a))
+    try {
+        await User.update(
+            {telefonnumber: inputData},
+            {where: {email: email}}
+        )
+        res.status(200).send({msg: 'succes'})
+    } catch(err) {
+        res.status(404).send(err)
+    }
+}
 
-    res.status(200).send('dupa')
+export const userUpdateMyAddress = async (req: Request, res: Response, next: NextFunction) => {
+    const { email, address, postcode, voivodeship, country } = req.body;
+
+    try {
+        await User.update(
+            {
+                myaddressstreet: address,
+                myaddresspostcode: postcode,
+                myaddressvoivodeship: voivodeship,
+                myaddresscountry: country
+            },
+            {where: {email: email}}
+        )
+        res.status(200).send({msg: 'succes'})
+    } catch(err) {
+        res.status(404).send(err)
+    }
+}
+
+export const userUpdateShippingAddress = async (req: Request, res: Response, next: NextFunction) => {
+    const { email, name, address, postcode, voivodeship, country } = req.body;
+
+    try {
+        await User.update(
+            {
+                shippingaddressname: name,
+                shippingaddressstreet: address,
+                shippingaddresspostcode: postcode,
+                shippingaddressvoivodeship: voivodeship,
+                shippingaddresscountry: country
+            },
+            {where: {email: email}}
+        )
+        res.status(200).send({msg: 'succes'})
+    } catch(err) {
+        res.status(404).send(err)
+    }
 }
