@@ -23,24 +23,14 @@ const App: React.FC = () => {
     <div>
       <Provider store={store}>
         <GlobalStyle />
-
-        {/* <Router>
-          <Switch>
-            <Route path = '/index' component={StartLayout} />
-            <Route path = '/auth-login' component={Auth} />
-            <Route path = '/auth-register' component = {Register} />
-            <Route path = '/settings-mypersonalities' component = {AccountSettings} />
-          </Switch>
-        </Router> */}
-
         <Router>
           <Switch>
             <Route path='/index' component={StartLayout} />
             <Route path='/auth-login' component={Auth} />
             <Route path='/auth-register' component={Register} />
-            {isLogged() ? 
-            <Route path='/settings-mypersonalities' component={AccountSettings} /> : 
-            <Route path='/settings-mypersonalities' component={Auth} />}
+            {isLogged() ?
+              <Route path='/settings-mypersonalities' component={AccountSettings} /> :
+              <Route path='/settings-mypersonalities' component={Auth} />}
           </Switch>
         </Router>
 

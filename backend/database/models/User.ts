@@ -16,11 +16,22 @@ export const User = sequelize.define<UserInstance>('user', {
         primaryKey: true
     },
     name: DataTypes.STRING,
-    surname: DataTypes.STRING,
     email: {
         type: DataTypes.STRING,
         unique: true
     },
     password: DataTypes.STRING,
-    role: DataTypes.STRING
+    role: DataTypes.STRING,
+    telefonnumber: DataTypes.STRING,
+    birthdate: DataTypes.DATE,
+    createaccount: DataTypes.DATE,
+    myaddressstreet: DataTypes.STRING,
+    myaddresspostcode: DataTypes.STRING,
+    myaddressvoivodeship: DataTypes.STRING,
+    myaddresscountry: DataTypes.STRING,
+    shippingaddressname: DataTypes.STRING,
+    shippingaddressstreet: DataTypes.STRING,
+    shippingaddresspostcode: DataTypes.STRING,
+    shippingaddressvoivodeship: DataTypes.STRING,
+    shippingaddresscountry: DataTypes.STRING,
 })

@@ -5,25 +5,14 @@ import { config } from '../../config';
 import Menu from '../Menu/Menu';
 import axios from 'axios';
 
-interface Props {
-    isLogged?: boolean
-}
 
-const Navbar: React.FC<Props> = () => {
+const Navbar: React.FC = () => {
 
     const [menuVisible, setMenuVisible] = useState<boolean>(false);
 
     const isLogged = () => {
         return localStorage.getItem('token') ? true : false;
     }
-
-    useEffect(() => {
-        axios.post(`${config.backendUrl}/user/get-user`, {
-            token: localStorage.getItem('token')
-        })
-            .then(res => console.log(res))
-            .catch(err => console.log(err.code))
-    }, [])
 
     return (
         <div>

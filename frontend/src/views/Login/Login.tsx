@@ -13,7 +13,6 @@ const Login: React.FC = () => {
     const [emailValue, setEmailValue] = useState<string>('');
     const [passwordValue, setPasswordValue] = useState<string>('');
     const [loginVerification, setVerification] = useState<string>('');
-    const [isLogged, setLogged] = useState<boolean>(false);
 
     const history = useHistory();
 
@@ -35,7 +34,7 @@ const Login: React.FC = () => {
 
     return (
         <div>
-            <Navbar isLogged = {isLogged}/>
+            <Navbar />
             <Styled.Container>
                 <Styled.FormContainer>
                     <h1>Zaloguj się</h1>

@@ -4,6 +4,14 @@ interface IConfig {
     loginPath: string;
     registerPath: string;
     settings: string;
+    userDataEdit: {
+        name: string;
+        email: string;
+        telefonNumber: string;
+        birthDate: string;
+        myAddress: string;
+        shippingAddress: string;
+    }
 }
 
 export const config: IConfig = {
@@ -11,5 +19,13 @@ export const config: IConfig = {
     startSitePath: '/index',
     loginPath: '/auth-login',
     registerPath: '/auth-register',
-    settings: '/settings-mypersonalities'
+    settings: '/settings-mypersonalities',
+    userDataEdit: {
+        name: 'name-edit',
+        email: 'email-edit',
+        telefonNumber: 'telefonNumber-edit',
+        birthDate: 'birthDate-edit',
+        myAddress: 'myAddress-edit',
+        shippingAddress: 'shippingAddress-edit'
+    }
 }

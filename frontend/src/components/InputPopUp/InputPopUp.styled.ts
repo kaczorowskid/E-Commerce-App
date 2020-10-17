@@ -11,7 +11,7 @@ export const Container = styled.div`
 
 export const InpuPopUpContainer = styled.div`
     width: 400px;
-    height: 150px;
+    height: 200px;
     position: absolute;
     top: 50%;
     left: 50%;
@@ -29,9 +29,17 @@ export const Info = styled.span`
     color: white;
 `;
 
+export const InputDataContainer = styled.div`
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+`;
+
 export const InputData = styled.input`
     width: 80%;
-    height: 20%;
+    height: 30px;
     border: 3px solid #717171;
     
     &:hover {
