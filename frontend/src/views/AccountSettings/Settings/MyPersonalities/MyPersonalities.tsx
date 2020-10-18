@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as Styled from './MyPersonalities.styled'
-import InputPopUp from '../../../../components/InputPopUp/InputPopUp';
+import InputPopUp from '../../../../components/InputPopUp/InputPopUp'
 import { IUserData } from '../../../../types/myPersonalities.types';
 import axios from 'axios';
 import { config } from '../../../../config';

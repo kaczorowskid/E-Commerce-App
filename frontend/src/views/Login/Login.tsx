@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import * as Styled from './Login.styled';
 import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
@@ -30,7 +30,6 @@ const Login: React.FC = () => {
             setVerification(err.response.data.msg)
         })
     }
-
 
     return (
         <div>

@@ -4,14 +4,17 @@ import Navbar from '../../components/Navbar/Navbar';
 import Footer from '../../components/Footer/Footer';
 import MyOrders from './Settings/MyOrders/MyOrders';
 import MyPersonalities from './Settings/MyPersonalities/MyPersonalities';
+import { useHistory } from "react-router-dom";
+import { config } from '../../config'
 
 const AccountSettings: React.FC = () => {
 
     const [tabItem, setTabItem] = useState<number>(2);
+    const history = useHistory();
 
     const logout = () => {
         localStorage.setItem('token', '');
-        console.log(localStorage.getItem('token'))
+        history.push(config.startSitePath);
     }
 
     return (
@@ -26,8 +29,8 @@ const AccountSettings: React.FC = () => {
                     <Styled.OptionsContainer value = {tabItem}>
                         <Styled.OptionsItem onClick = {() => setTabItem(1)} >Moje zamówienia</Styled.OptionsItem>
                         <Styled.OptionsItem onClick = {() => setTabItem(2)} >Zmień swoje dane</Styled.OptionsItem>
-                        <button onClick = {() => logout()} >wyloguj</button>
                     </Styled.OptionsContainer>
+                    <Styled.LogoutButton onClick = {() => logout()} >WYLOGUJ</Styled.LogoutButton>
                 </Styled.OptionsWrapper>
             </Styled.Container>
             <Footer />

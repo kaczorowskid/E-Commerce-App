@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as MenuStyled from './Menu.styled';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
 
 interface Props {
     visible: boolean

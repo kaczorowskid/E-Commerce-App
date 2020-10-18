@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as NavbarStyled from './Navbar.styled';
 import { Link } from 'react-router-dom';
 import { config } from '../../config';
 import Menu from '../Menu/Menu';
-import axios from 'axios';
 
 
 const Navbar: React.FC = () => {
@@ -39,11 +38,11 @@ const Navbar: React.FC = () => {
                     </NavbarStyled.ShopingCardContainer>
                     {!isLogged() ? (
                         <Link to={config.loginPath} >
-                            <NavbarStyled.UserCart />
+                            <NavbarStyled.UserCart color = 'white'/>
                         </Link>
                     ) : (
                             <Link to={config.settings} >
-                                <NavbarStyled.UserCart />
+                                <NavbarStyled.UserCart color = '#d5a2ff'/>
                             </Link>
                         )}
                 </NavbarStyled.RightContainer>

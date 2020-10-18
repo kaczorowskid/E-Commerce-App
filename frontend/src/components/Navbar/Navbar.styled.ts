@@ -130,7 +130,7 @@ export const ShopingCardContainer = styled.div`
 
 export const ShopingCardNum = styled.span`
     position: relative;
-    background-color: #49b788;
+    background-color: #d5a2ff;
     top: -15px;
     left: -30px;
     color: black;
@@ -150,9 +150,9 @@ export const ShoppingCart = styled(ShoppingCartOutline)`
     color: white;
 `;
 
-export const UserCart = styled(User)`
+export const UserCart = styled(User)<{color: string}>`
     width: 35px;
     height: 35px;
     margin: 0 25px 0 20px;
-    color: white;
+    color: ${props => props.color};
 `;

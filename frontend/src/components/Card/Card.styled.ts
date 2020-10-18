@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { CartAdd } from '@styled-icons/boxicons-solid';
-import { Heart } from '@styled-icons/boxicons-regular'
 
 export const SizeContainer = styled.div`
     position: relative;
