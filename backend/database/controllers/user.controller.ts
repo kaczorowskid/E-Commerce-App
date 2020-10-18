@@ -5,20 +5,25 @@ import { Request, Response, NextFunction } from 'express';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/User';
+import { EUser } from '../models/User';
 
 
 export const register = async(req: Request, res: Response) => {
-    const { name, email, password, role } = req.body;
+    const { name, email, password, role, birthdate } = req.body;
 
     const hashPassword: string = await bcrypt.hash(password, 10);
     const userExist: number = await User.count({ where: { email: email } })
 
+    console.log(birthdate)
+
     if (!userExist) {
         await User.create({
-            name: name,
-            email: email,
+            name,
+            email,
             password: hashPassword,
-            role: role
+            role: EUser.User,
+            birthdate: new Date(birthdate),
+            createaccount: new Date()
         })
         res.status(200).send({ msg: 'user created' });
     }

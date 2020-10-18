@@ -1,8 +1,10 @@
 export interface IUser {
-    name?: string,
+    name: string,
     email: string;
     password: string;
-    role?: string;
+    role: string;
+    birthdate: Date;
+    createaccount: Date
 }
 
 export interface IUserDBModel {
