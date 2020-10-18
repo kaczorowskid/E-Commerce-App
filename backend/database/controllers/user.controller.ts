@@ -126,6 +126,7 @@ export const userUpdateShippingAddress = async (req: Request, res: Response, nex
             },
             {where: {email: email}}
         )
+        
         res.status(200).send({msg: 'succes'})
     } catch(err) {
         res.status(404).send(err)
