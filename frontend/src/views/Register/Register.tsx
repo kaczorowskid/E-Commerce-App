@@ -3,6 +3,7 @@ import * as Styled from './Register.styled';
 import Footer from '../../components/Footer/Footer';
 import Navbar from '../../components/Navbar/Navbar';
 import axios from 'axios';
+import { monthDays, years } from '../../helpers/date';
 
 const Register: React.FC = () => {
 
@@ -20,30 +21,13 @@ const Register: React.FC = () => {
 
     const [isRegister, setRegister] = useState<string>('');
 
-    const daysOption: Array<number> = [];
-    const months: Array<string> = ["Styczeń", "Luty", "Marzec", "Kwiecień", 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
-    const yearOption: Array<number> = [];
-
-    const [days, setDays] = useState<Array<number>>();
-    const [years, setYears] = useState<Array<number>>();
+    const daysOption: Array<number> = monthDays();
+    const monthsOption: Array<string> = ["Styczeń", "Luty", "Marzec", "Kwiecień", 'Maj', 'Czerwiec', 'Lipiec', 'Sierpień', 'Wrzesień', 'Październik', 'Listopad', 'Grudzień'];
+    const yearOption: Array<number> = years();
 
     const [daysValue, setDaysValue] = useState<string>('1');
     const [monthsValue, setMonthsValue] = useState<string>('Styczeń');
     const [yearsValue, setYearsValue] = useState<string>('1970');
-
-    const makeDays = () => {
-        for(let d = 1; d <= 31; d++) {
-            daysOption.push(d);
-            setDays(daysOption)
-        }
-
-        for(let y = 1970; y <= 2020; y++) {
-            yearOption.push(y);
-            setYears(yearOption)
-        }
-    }
-
-    useEffect(() => makeDays(), []);
 
 
     const sendData = (name: string, surname: string, email: string, password: string) => {
@@ -77,7 +61,6 @@ const Register: React.FC = () => {
         }
     }
 
-
     return (
         <div>
             <Navbar />
@@ -96,13 +79,13 @@ const Register: React.FC = () => {
                     {confirmErrorPasswordValue ? <Styled.ErrorInfo >Hasła się nie zgadzają</Styled.ErrorInfo> : null}
                     <Styled.DateContainer>
                         <Styled.ItemSelect onChange = {e => setDaysValue(e.target.value)} >
-                            {days && days.map(day => <Styled.ItemOption key = {day} value = {day + 1} > {day} </Styled.ItemOption> )}
+                            {daysOption && daysOption.map(day => <Styled.ItemOption key = {day} value = {day + 1} > {day} </Styled.ItemOption> )}
                         </Styled.ItemSelect>
                         <Styled.ItemSelect onChange = {e => setMonthsValue(e.target.value)}>
-                            {months.map((month, i) => <Styled.ItemOption key = {month} value = {i + 1}> {month} </Styled.ItemOption>)}
+                            {monthsOption.map((month, i) => <Styled.ItemOption key = {month} value = {i + 1}> {month} </Styled.ItemOption>)}
                         </Styled.ItemSelect>
                         <Styled.ItemSelect onChange = {e => setYearsValue(e.target.value)}>
-                            {years && years.map(year => <Styled.ItemOption key = {year} value = {year}> {year} </Styled.ItemOption> )}
+                            {yearOption && yearOption.map(year => <Styled.ItemOption key = {year} value = {year}> {year} </Styled.ItemOption> )}
                         </Styled.ItemSelect>
                     </Styled.DateContainer>
                     <Styled.RegistryButton onClick={() => sendData(nameValue, surnameValue, emailValue, passwordValue)} >Zarejestruj się</Styled.RegistryButton>
